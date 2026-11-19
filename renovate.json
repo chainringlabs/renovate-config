@@ -1,0 +1,8 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": "This repo sets update policy for every other repo, so nothing here is automerged.",
+  "extends": ["github>tgrecojr/renovate-config"],
+  "automerge": false,
+  "platformAutomerge": false,
+  "vulnerabilityAlerts": { "automerge": false }
+}

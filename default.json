@@ -1,0 +1,71 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": "Shared Renovate policy for tgrecojr repos: 7-day cooldown, immutable pins, automerge only for aged non-major updates.",
+  "extends": [
+    "config:recommended",
+    ":dependencyDashboard",
+    ":semanticCommits",
+    ":disableRateLimiting",
+    ":timezone(America/New_York)",
+    "docker:enableMajor",
+    "docker:pinDigests",
+    "helpers:pinGitHubActionDigests"
+  ],
+  "schedule": [
+    "after 10pm every weekday",
+    "before 5am every weekday",
+    "every weekend"
+  ],
+  "prConcurrentLimit": 3,
+  "prCreation": "immediate",
+  "rebaseWhen": "behind-base-branch",
+  "minimumReleaseAge": "7 days",
+  "internalChecksFilter": "strict",
+  "minimumReleaseAgePackageManagerSync": true,
+  "automerge": true,
+  "platformAutomerge": true,
+  "osvVulnerabilityAlerts": true,
+  "vulnerabilityAlerts": {
+    "description": "Security fixes: open the PR at once (visible, can be merged early by hand), automerge only when the fix is 7 days old.",
+    "enabled": true,
+    "labels": ["security"],
+    "schedule": ["at any time"],
+    "minimumReleaseAge": "7 days",
+    "internalChecksFilter": "none",
+    "automerge": true
+  },
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": ["before 4am on monday"],
+    "automerge": false
+  },
+  "packageRules": [
+    {
+      "description": "Group all minor and patch updates together.",
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "all non-major dependencies",
+      "groupSlug": "all-minor-patch"
+    },
+    {
+      "description": "Major updates always need review.",
+      "matchUpdateTypes": ["major"],
+      "automerge": false,
+      "labels": ["major-update"]
+    },
+    {
+      "description": "Digest updates may be raised at any time; the cooldown still applies where the registry provides a date.",
+      "matchUpdateTypes": ["digest"],
+      "schedule": ["at any time"]
+    },
+    {
+      "description": "Only Docker Hub gives Renovate a release date. Without this, images on GHCR, Quay and cgr.dev would be held forever. Docker Hub images are still aged 7 days; the others pass without an age check and need the repo's own cooldown status check.",
+      "matchDatasources": ["docker"],
+      "minimumReleaseAgeBehaviour": "timestamp-optional"
+    },
+    {
+      "description": "Lockfile maintenance has no release date for Renovate to check; the package manager enforces the cooldown (passed by Renovate for npm, pnpm and Cargo; set exclude-newer in pyproject.toml for uv). Not automerged: see lockFileMaintenance above.",
+      "matchUpdateTypes": ["lockFileMaintenance"],
+      "minimumReleaseAge": null
+    }
+  ]
+}
