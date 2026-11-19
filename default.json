@@ -25,6 +25,12 @@
   "automerge": true,
   "platformAutomerge": true,
   "osvVulnerabilityAlerts": true,
+  "logLevelRemap": [
+    {
+      "matchMessage": "/did not have a releaseTimestamp, but as we're running with minimumReleaseAgeBehaviour=timestamp-optional/",
+      "newLogLevel": "info"
+    }
+  ],
   "vulnerabilityAlerts": {
     "description": "Security fixes: open the PR at once (visible, can be merged early by hand), automerge only when the fix is 7 days old.",
     "enabled": true,
