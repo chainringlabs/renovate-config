@@ -69,7 +69,8 @@
       "minimumReleaseAgeBehaviour": "timestamp-optional"
     },
     {
-      "description": "Lockfile maintenance has no release date for Renovate to check; the package manager enforces the cooldown (passed by Renovate for npm, pnpm and Cargo; set exclude-newer in pyproject.toml for uv). Not automerged: see lockFileMaintenance above.",
+      "description": "uv only: Renovate cannot pass the cooldown to uv, so lockfile maintenance would be held forever. Exempt it here and set exclude-newer in pyproject.toml so uv enforces the cooldown itself. For npm, pnpm and Cargo there is deliberately no exemption: lockfile maintenance must keep the 7-day age, because that is the value Renovate passes to the package manager.",
+      "matchManagers": ["pep621"],
       "matchUpdateTypes": ["lockFileMaintenance"],
       "minimumReleaseAge": null
     }
