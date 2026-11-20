@@ -9,7 +9,7 @@
     ":timezone(America/New_York)",
     "docker:enableMajor",
     "docker:pinDigests",
-    "helpers:pinGitHubActionDigests"
+    "helpers:pinGitHubActionDigestsToSemver"
   ],
   "schedule": [
     "after 10pm every weekday",
@@ -57,6 +57,11 @@
       "matchUpdateTypes": ["major"],
       "automerge": false,
       "labels": ["major-update"]
+    },
+    {
+      "description": "Pinning freezes the version already in use and brings in no new code. A pin has no release date, so without this the pin PR would wait forever.",
+      "matchUpdateTypes": ["pin", "pinDigest"],
+      "minimumReleaseAge": null
     },
     {
       "description": "Digest updates may be raised at any time; the cooldown still applies where the registry provides a date.",
