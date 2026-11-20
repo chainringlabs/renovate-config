@@ -26,7 +26,7 @@ packages, manager settings) in the repo's own config.
 | Security fixes | PR opens immediately; automerges once the fix is 7 days old. Merge by hand to take it sooner. |
 | Automerge | Minor, patch and digest updates, once aged and green. Never majors. |
 | Lockfile maintenance | Weekly, not automerged. |
-| Pinning | GitHub Actions and Docker images are pinned by digest. |
+| Pinning | GitHub Actions and Docker images are pinned by digest. Actions carry their full version (`# v7.0.1`), so later updates have a release date and wait 7 days. The pin itself does not wait. |
 
 ## Changing the policy
 
