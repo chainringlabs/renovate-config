@@ -13,7 +13,7 @@ the dependency update policy: cooldown, pinning, automerge rules.
 - `npx --yes --ignore-scripts --package renovate@44.236.3 -- renovate-config-validator --strict --no-global default.json renovate.json` — validate the preset
 
 ## Architecture
-- `default.json` — the preset; other repos extend `github>tgrecojr/renovate-config`
+- `default.json` — the preset; other repos extend `github>chainringlabs/renovate-config`
 - `renovate.json` — this repo's own Renovate config; extends the preset, automerge off
 - `.github/workflows/validate.yml` — runs the validator on every PR and push to main
 

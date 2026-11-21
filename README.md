@@ -9,7 +9,7 @@ every repo.
 ```json
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["github>tgrecojr/renovate-config"]
+  "extends": ["github>chainringlabs/renovate-config"]
 }
 ```
 
