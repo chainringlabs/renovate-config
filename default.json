@@ -78,6 +78,15 @@
       "matchManagers": ["pep621"],
       "matchUpdateTypes": ["lockFileMaintenance"],
       "minimumReleaseAge": null
+    },
+    {
+      "description": "The organization's own shared workflows (chainringlabs/ci). The cooldown guards against third-party releases; this code is reviewed in its own repository before it is tagged, so its pins are raised at once, at any time, in a PR of their own that is not held back by other updates.",
+      "matchManagers": ["github-actions"],
+      "matchPackageNames": ["chainringlabs/ci"],
+      "minimumReleaseAge": null,
+      "schedule": ["at any time"],
+      "groupName": "chainringlabs ci workflows",
+      "groupSlug": "chainringlabs-ci"
     }
   ]
 }
